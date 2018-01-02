@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
+
 // ====
 
 class CreateLink extends React.Component {
@@ -8,15 +12,25 @@ class CreateLink extends React.Component {
         url: ''
     };
 
-    _createLink() {
-        console.warn('DALE PAPAI!');
+    _createLink = async (evt) => {
+        evt.preventDefault();
+
+        const { description, url } = this.state;
+        const { createLinkMutation } = this.props;
+
+        await createLinkMutation({
+            variables: {
+                description,
+                url
+            }
+        })
     }
 
     render() {
         const { description, url } = this.state;
 
         return(
-            <form>
+            <form onSubmit={this._createLink.bind(this)}>
                 <div className="field">
                     <label htmlFor="description" className="label">Description</label>
                     <div className="control">
@@ -31,7 +45,7 @@ class CreateLink extends React.Component {
                 </div>
                 
                 <div className="field">
-                    <label htmlFor="description" className="label">Description</label>
+                    <label htmlFor="description" className="label">URL</label>
                     <div className="control">
                         <input 
                             className="input" 
@@ -45,7 +59,7 @@ class CreateLink extends React.Component {
 
                 <div className="field">
                     <div className="control">
-                        <button className="button" onClick={() => this._createLink.bind(this)}>
+                        <button className="button is-link">
                             Submit
                         </button>
                     </div>
@@ -57,4 +71,20 @@ class CreateLink extends React.Component {
 
 // ====
 
-export default CreateLink;
+const CREATE_LINK_MUTATION = gql`
+    mutation CreateLinkMutation($description: String!, $url: String!) {
+        createLink(
+            description: $description,
+            url: $url
+        ) {
+            id
+            url
+            description
+            createdAt
+        }
+    }
+`;
+
+export default graphql(CREATE_LINK_MUTATION, {
+    name: 'createLinkMutation'
+})(CreateLink);
