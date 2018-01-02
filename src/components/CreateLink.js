@@ -3,7 +3,6 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-
 // ====
 
 class CreateLink extends React.Component {
@@ -16,14 +15,16 @@ class CreateLink extends React.Component {
         evt.preventDefault();
 
         const { description, url } = this.state;
-        const { createLinkMutation } = this.props;
+        const { createLinkMutation, history } = this.props;
 
         await createLinkMutation({
             variables: {
                 description,
                 url
             }
-        })
+        });
+
+        history.push('/');
     }
 
     render() {
@@ -73,10 +74,7 @@ class CreateLink extends React.Component {
 
 const CREATE_LINK_MUTATION = gql`
     mutation CreateLinkMutation($description: String!, $url: String!) {
-        createLink(
-            description: $description,
-            url: $url
-        ) {
+        createLink(description: $description, url: $url) {
             id
             url
             description

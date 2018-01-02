@@ -12,19 +12,34 @@ class LinkList extends React.Component {
         const { allLinksQuery } = this.props;
 
         if (allLinksQuery && allLinksQuery.loading) {
-            return <div>Loading...</div>
+            return(
+                <div className="notification is-primary">Loading...</div>
+            );
         }
         
         if (allLinksQuery && allLinksQuery.error) {
-            return <div>Error! {allLinksQuery.error}</div>
+            return (
+                <div className="notification is-danger">Error!</div>
+            );
         }
 
         return (
-            <ul>
-                {allLinksQuery.allLinks.map(link => (
-                    <Link key={link.id} link={link} />
-                ))}
-            </ul>
+            <table className="table is-hoverable is-narrow is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>description</th>
+                        <th>url</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {allLinksQuery.allLinks.map(link => (
+                        <Link key={link.id} link={link} />
+                    ))}
+                </tbody>
+            </table>
         )
     }
 }

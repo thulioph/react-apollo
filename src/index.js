@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
@@ -9,7 +10,7 @@ import { ApolloProvider } from 'react-apollo';
 // ====
 
 import './index.css';
-import App from './components/App';
+import Main from './containers/Main';
 import registerServiceWorker from './registerServiceWorker';
 
 // ====
@@ -22,9 +23,11 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-    <ApolloProvider client={client}>
-        <App />
-    </ApolloProvider>, 
+    <BrowserRouter>
+        <ApolloProvider client={client}>
+            <Main />
+        </ApolloProvider>
+    </BrowserRouter>, 
     document.getElementById('root')
 );
 
