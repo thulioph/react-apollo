@@ -16,7 +16,7 @@ class Header extends React.Component {
         isOpen = isOpen ? 'is-active' : '';
 
         return (
-            <nav className="navbar is-transparent">
+            <nav className="navbar is-dark">
                 <div className="navbar-brand">
                     <a className="navbar-item" href="https://bulma.io">
                         <img 
