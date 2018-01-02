@@ -1,26 +1,36 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import logo from '../logo.svg';
 import '../styles/App.css';
 
-import CreateLink from './CreateLink';
+import Header from './Header';
+import LinkList from './LinkList';
 
 // ====
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
-      <div className="container App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          
-          <h1 className="App-title">
-            React with Apollo
-          </h1>
-        </header>
+      <div className="App">
+        <Header />
 
+        <section className="hero is-dark">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title">
+                Create
+              </h1>
+
+              <h2 className="subtitle">
+                add a new link
+              </h2>
+            </div>
+          </div>
+        </section>
+        
         <main className="section App-intro">
-          <CreateLink />
+          <div className="container">
+            <LinkList />
+          </div>
         </main>
       </div>
     );
