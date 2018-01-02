@@ -7,11 +7,15 @@ class Link extends React.Component {
         const { link } = this.props;
 
         return(
-            <li key={link.id}>
-                <a href={link.url} target='_blank'>
-                    {link.description}
-                </a>
-            </li>
+            <tr key={link.id}>
+                <td>{link.id}</td>
+                <td>{link.description}</td>
+                <td>
+                    <a href={link.url} target='_blank'>
+                        {link.url}
+                    </a>
+                </td>
+            </tr>
         )
     }
 }
