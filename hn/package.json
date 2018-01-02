@@ -1,0 +1,8 @@
+{
+  "name": "hn",
+  "version": "1.0.0",
+  "description": "My Graphcool Service",
+  "dependencies": {
+    "react-apollo": "^2.0.4"
+  }
+}
