@@ -24,12 +24,13 @@ class LinkList extends React.Component {
         }
 
         return (
-            <table className="table">
+            <table className="table is-hoverable is-narrow is-fullwidth">
                 <thead>
                     <tr>
                         <th>id</th>
                         <th>description</th>
                         <th>url</th>
+                        <th></th>
                     </tr>
                 </thead>
                 
