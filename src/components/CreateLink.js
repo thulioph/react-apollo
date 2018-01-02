@@ -16,14 +16,16 @@ class CreateLink extends React.Component {
         evt.preventDefault();
 
         const { description, url } = this.state;
-        const { createLinkMutation } = this.props;
+        const { createLinkMutation, history } = this.props;
 
         await createLinkMutation({
             variables: {
                 description,
                 url
             }
-        })
+        });
+
+        history.push('/');
     }
 
     render() {
