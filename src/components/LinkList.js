@@ -23,6 +23,8 @@ class LinkList extends React.Component {
             );
         }
 
+        allLinksQuery.refetch();
+
         return (
             <table className="table is-hoverable is-narrow is-fullwidth">
                 <thead>
@@ -36,7 +38,11 @@ class LinkList extends React.Component {
                 
                 <tbody>
                     {allLinksQuery.allLinks.map(link => (
-                        <Link key={link.id} link={link} />
+                        <Link 
+                            key={link.id} 
+                            link={link}
+                            {...this.props}
+                        />
                     ))}
                 </tbody>
             </table>
