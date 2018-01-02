@@ -7,7 +7,15 @@ import gql from 'graphql-tag';
 
 class Link extends React.Component {
     _deleteLink = async ({id}) => {
-        console.warn(id);
+        const { removeLinkMutation, allLinksQuery } = this.props;
+
+        await removeLinkMutation(({
+            variables: {
+                id: id
+            }
+        }));
+        
+        allLinksQuery.refetch();
     }
 
     render() {
@@ -34,4 +42,14 @@ class Link extends React.Component {
 
 // ====
 
-export default Link;
+const REMOVE_LINK_MUTATION = gql`
+    mutation DeleteLinkMutation($id: ID!) {
+        deleteLink(id: $id) {
+            id
+        }
+    }
+`;
+
+export default graphql(REMOVE_LINK_MUTATION, {
+    name: 'removeLinkMutation'
+})(Link);
